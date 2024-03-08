@@ -1,0 +1,6 @@
+<form [formGroup]="registerForm" class="flex flex-col" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Benutzername" formControlName="username">
+    <input type="email" placeholder="E-Mail" formControlName="email">
+    <input type="password" placeholder="Passwort" formControlName="password">
+    <button class="mt-3" type="submit">Registrieren</button>
+</form>
