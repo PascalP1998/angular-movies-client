@@ -68,6 +68,12 @@ module.exports = {
         900: '#2e1305',
         950: '#170a03',
       },
+      'positive': {
+        50: '#AEF2B1'
+      },
+      'negative': {
+        50: '#E9697E'
+      }
      },         
     extend: {},
   },
