@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { RegisterformComponent } from '../registerform/registerform.component';
-import { LoginformComponent } from '../loginform/loginform.component';
+import { AddmovieComponent } from '../addmovie/addmovie.component';
+import { ViewReviewsComponent } from '../view-reviews/view-reviews.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RegisterformComponent, LoginformComponent],
+  imports: [AddmovieComponent, ViewReviewsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

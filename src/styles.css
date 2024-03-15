@@ -11,7 +11,7 @@
     }
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="number"] {
     @apply p-2 mt-2 border-2 border-accent-100 rounded-md
 }
 

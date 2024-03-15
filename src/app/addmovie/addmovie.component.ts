@@ -6,43 +6,49 @@ import { Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-registerform',
+  selector: 'app-addmovie',
   standalone: true,
   imports: [ReactiveFormsModule, HttpClientModule, CommonModule],
-  templateUrl: './registerform.component.html',
-  styleUrl: './registerform.component.css'
+  templateUrl: './addmovie.component.html',
+  styleUrl: './addmovie.component.css'
 })
-export class RegisterformComponent {
-  registerForm = new FormGroup({
+export class AddmovieComponent {
+  addForm = new FormGroup({
     username: new FormControl('', Validators.compose([Validators.minLength(1), Validators.required])),
-    email: new FormControl('', Validators.compose([Validators.email, Validators.required])),
-    password: new FormControl('', Validators.compose([Validators.minLength(8), Validators.required])),
+    name: new FormControl('', Validators.compose([Validators.minLength(1), Validators.required])),
+    rating: new FormControl('', Validators.compose([Validators.min(1), Validators.max(5), Validators.required])),
+    type: new FormControl('', Validators.compose([Validators.minLength(1), Validators.required])),
   });
 
   constructor(private http: HttpClient, public api: ApiService) {}
 
   checkStatus!: string;
 
+  barCollapse = false;
+
+  onBarClick() {
+    if (this.barCollapse) { 
+      this.barCollapse = false;
+    } else {
+      this.barCollapse = true;
+    }
+  }
 
   onSubmit() {
 
     const headers = new HttpHeaders().set('Authorization', 'my-auth-token').set('Content-Type', 'application/json');
 
-    /*if (this.registerForm.value.email == '' || this.registerForm.value.email?.match("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")) {
-
-    }*/
-
     interface ApiResponse {
       status: number;
     }
 
-    this.http.post<ApiResponse>(`${this.api.api_url}/api/registerUser`, this.registerForm.value, {headers: headers}).subscribe({
+    this.http.post<ApiResponse>(`${this.api.api_url}/api/addmovie`, this.addForm.value, {headers: headers}).subscribe({
       next: (response) => {
-        console.log('Erfolgreich registriert!', response);
+        console.log('Erfolgreich hinzugefügt!', response);
         this.checkStatus = `${response.status}`;
       },
       error: (error) => {
-        console.error('Fehler bei der Registrierung:', error);
+        console.error('Fehler bei Hinzufügung:', error);
         this.checkStatus = `${error.status}`;
       }
     });

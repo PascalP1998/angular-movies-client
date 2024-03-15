@@ -1,0 +1,43 @@
+<button class="flex hover:cursor-pointer" (click)="onBarClick()">
+    <h1 class="font-bold">Füge deine eigene Bewertung hinzu!</h1>
+    <svg *ngIf="barCollapse" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-2 w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
+    </svg>
+    <svg *ngIf="barCollapse==false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-2 w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+    </svg>      
+</button>
+<form *ngIf="barCollapse" [formGroup]="addForm" class="flex flex-col items-center" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Dein Name" formControlName="username" required>
+    <input type="text" placeholder="Name vom Film/Serie/etc." formControlName="name" required>
+    <div class="flex justify-center flex-grow">
+        <div class="flex flex-col text-left p-2 flex-grow">
+            <div>
+                <input type="radio" formControlName="type" value="movie" id="movie">
+                <label for="movie"> Film</label>
+            </div>
+            <div>
+                <input type="radio" formControlName="type" value="series" id="series">
+                <label for="series"> Serie</label>
+            </div>
+            <div>
+                <input type="radio" formControlName="type" value="other" id="other">
+                <label for="other"> Sonstiges</label>
+            </div>
+        </div>
+        <div class="flex flex-col p-2">
+            <label for="rating">Rating (1-5)</label>
+            <input id="rating" type="number" formControlName="rating" required min="1" max="5" class="w-20">
+        </div>
+    </div>
+    <button class="mt-3" type="submit">Bewerten</button>
+    <div *ngIf="checkStatus == '200'" class="mt-3 bg-positive-50 p-4 rounded-md">
+        <span>Bewertung erfolgreich</span>
+    </div>
+    <div *ngIf="checkStatus == '422'" class="mt-3 bg-negative-50 p-4 rounded-md">
+        <span>Bewertung fehlgeschlagen</span>
+    </div>
+    <div *ngIf="checkStatus == '418'" class="mt-3 bg-negative-50 p-4 rounded-md">
+        <span>Bitte alle Felder ausfüllen!</span>
+    </div>  
+</form>

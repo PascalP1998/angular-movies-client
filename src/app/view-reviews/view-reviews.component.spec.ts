@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginformComponent } from './loginform.component';
+import { ViewReviewsComponent } from './view-reviews.component';
 
-describe('LoginformComponent', () => {
-  let component: LoginformComponent;
-  let fixture: ComponentFixture<LoginformComponent>;
+describe('ViewReviewsComponent', () => {
+  let component: ViewReviewsComponent;
+  let fixture: ComponentFixture<ViewReviewsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LoginformComponent]
+      imports: [ViewReviewsComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(LoginformComponent);
+    fixture = TestBed.createComponent(ViewReviewsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
